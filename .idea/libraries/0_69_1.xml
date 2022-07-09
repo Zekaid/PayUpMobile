@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="0.69.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Mobile/node_modules/react-native/android/com/facebook/react/react-native/0.69.1/react-native-0.69.1-release-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Mobile/node_modules/react-native/android/com/facebook/react/react-native/0.69.1/react-native-0.69.1-debug-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Mobile/node_modules/react-native/android/com/facebook/react/react-native/0.69.1/react-native-0.69.1-release-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Mobile/node_modules/react-native/android/com/facebook/react/react-native/0.69.1/react-native-0.69.1-debug-sources.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
