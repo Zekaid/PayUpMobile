@@ -16,6 +16,13 @@ const styles = StyleSheet.create({
     input: {
         borderStyle: "solid",
         borderWidth: 1,
+        width: 150,
+    },
+
+    prices: {
+        display: "flex",
+        flexDirection: "row",
+
     }
 
 })
@@ -35,7 +42,7 @@ function Price (props){
     }
 
     return (
-        <View>
+        <View style = {styles.prices}>
             <Text>Price: </Text>
             {(props.value != null) ? <TextInput onChangeText={set}></TextInput> :
                 <TextInput onChangeText={set} style={styles.input}/>}

@@ -17,6 +17,13 @@ const styles = StyleSheet.create({
     input: {
         borderStyle: "solid",
         borderWidth: 1,
+    },
+
+    buttons: {
+        display: "flex",
+        flexWrap: "wrap",
+        flexDirection: "row",
+
     }
 
 })
@@ -71,9 +78,10 @@ function Person(props) {
 
     return (
         <View>
-
-            <Button onPress={add} title="Add"/>
-            <Button onPress={()=>props.del(props.id)} title="Remove"/>
+            <View style = {styles.buttons}>
+                <Button onPress={add} title="Add"/>
+                <Button onPress={()=>props.del(props.id)} title="Remove"/>
+            </View>
             {check()}
             <View>{Object.keys(prices).map((k) => {
                 return (<View>
