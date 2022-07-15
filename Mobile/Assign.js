@@ -44,17 +44,23 @@ const Assign = ({ navigation, route }) => {
     const [curr, setCurr] = useState (-1);
     const [name,setName] = useState ("");
     const [modal,setModal] = useState (false);
+    const [totalPrice, setTotalPrice] = useState("");
 
     const addPerson = () => {
         let copy = Object.assign({},people);
-        copy[count] = [name,{},0];
+        copy[count] = [name,{},0,true];
         setPeople(copy);
+
         setCount(count+1);
     }
 
     const removePerson = (ct) => {
         let copy = Object.assign({},people);
         delete copy[ct];
+        Object.keys(people[ct][1]).map((k) => {
+            route.params.itemList[++route.params.itemCount] = people[ct][1][parseInt(k)];
+        });
+        setCurr(-1);
         setPeople(copy);
     }
 
@@ -83,6 +89,30 @@ const Assign = ({ navigation, route }) => {
 
     }
 
+    const dropdown = (ct) => {
+        if (people[ct][3]){
+            return (Object.keys(people[ct][1]).map((k) => {
+                return (
+                    <View style={{flexDirection:"row", marginLeft: 40, justifyContent: "flex-start"}}>
+                        <Text>{people[ct][1][parseInt(k)][0]}:  </Text>
+                        <Text>${people[ct][1][parseInt(k)][1]}</Text>
+                    </View>
+                )
+            }))
+        }
+        return;
+    }
+
+    const changeDropdown = (ct) => {
+        let copy = Object.assign({},people);
+        copy[ct][3] = !copy[ct][3];
+        setPeople(copy);
+    }
+
+    const checkDropdown = (ct) => {
+        return (people[ct][3]) ? "-" : "+";
+    }
+
     const check = () => {
         if (curr === -1){
             return;
@@ -104,6 +134,7 @@ const Assign = ({ navigation, route }) => {
 
     return (
         <SafeAreaView>
+
             <View style={{justifyContent: "space-between", flexDirection: "row"}}>
                 <Text style={{fontSize: 30,
                     margin: 10,}}>
@@ -128,7 +159,7 @@ const Assign = ({ navigation, route }) => {
                     maxHeight: 700, alignItems: "center",
                 }}>
                     <Text style={{fontSize:30}}>{checkName()}</Text>
-                    <Text style={{fontSize:20}}> Uncollected Items</Text>
+                    <Text style={{fontSize:20}}> Unassigned Items</Text>
                     <ScrollView>
                     {
                         Object.keys(route.params.itemList).map((ct) => {
@@ -145,33 +176,46 @@ const Assign = ({ navigation, route }) => {
                     }
                     </ScrollView>
 
-                    <Text style={{fontSize:20}}>Collected Items</Text>
+                    <Text style={{fontSize:20}}>Assigned Items</Text>
                     <ScrollView>
                     {check()}
                     </ScrollView>
                     <Button title={"Confirm"} onPress={()=>setModal(false)}/>
                 </View>
             </Modal>
-            
+
+            <ScrollView style={{height: 550}}>
             {
                 Object.keys(people).map((ct) => {
                         return (
-                            <View style={styles.people}>
-                                <Button title={"-"}/>
-                                <Text style={{marginTop:10, minWidth: 150, maxWidth: 150}}> {people[ct][0]}</Text>
-                                <Button title={"Assign"} onPress={()=> {
-                                    setModal(true);
-                                    setCurr(parseInt(ct));
-                                    }
-                                } />
+                            <View>
+                                <View style={styles.people}>
+                                    <Button title={checkDropdown(parseInt(ct))} onPress={()=>changeDropdown(parseInt(ct))}/>
+                                    <Text style={{marginTop:10, minWidth: 150, maxWidth: 150}}> {people[ct][0]}</Text>
+                                    <Button title={"Assign"} onPress={()=> {
+                                        setModal(true);
+                                        setCurr(parseInt(ct));
+                                        }
+                                    } />
 
-                                <Button title={"Remove Person"} onPress={()=>removePerson(parseInt(ct))}/>
+                                    <Button title={"Remove Person"} onPress={()=>removePerson(parseInt(ct))}/>
+                                </View>
+                                {dropdown(parseInt(ct))}
                             </View>
+
                         )
                     }
                 )
             }
-
+            </ScrollView>
+            <View style={{alignItems: "center", flexDirection: "column", justifyContent:"space-evenly", height: 120,}}>
+                <Text>Number of Unassigned Items: {Object.keys(route.params.itemList).length}</Text>
+                <View style={{flexDirection: "row"}}>
+                    <Text>Total Price:</Text>
+                    <TextInput style={styles.input} onChangeText={setTotalPrice} placeholder={"including tax and tip"}/>
+                </View>
+                <Button title={"Calculate"} />
+            </View>
 
         </SafeAreaView>
     )
