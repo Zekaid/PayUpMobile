@@ -183,6 +183,7 @@ const Assign = ({ navigation, route }) => {
                     <Button title={"Confirm"} onPress={()=>setModal(false)}/>
                 </View>
             </Modal>
+
             <ScrollView style={{height: 550}}>
             {
                 Object.keys(people).map((ct) => {
