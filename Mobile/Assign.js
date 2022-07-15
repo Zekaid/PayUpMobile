@@ -152,6 +152,7 @@ const Assign = ({ navigation, route }) => {
                     <Button title={"Confirm"} onPress={()=>setModal(false)}/>
                 </View>
             </Modal>
+            
             {
                 Object.keys(people).map((ct) => {
                         return (
