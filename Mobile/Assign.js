@@ -148,7 +148,7 @@ const Assign = ({ navigation, route }) => {
 
             </View>
             <View style={styles.container}>
-                <TextInput style={styles.input} placeholder={"Person's name"} onChangeText={setName} clearTextOnFocus={true}/>
+                <TextInput style={styles.input} placeholder={"Person's name"} onChangeText={setName} placeholderTextColor={"gray"} clearTextOnFocus={true}/>
                 <View style={{marginRight:50}}>
                     <Button title={"Add Person"} onPress={addPerson}/>
                 </View>
@@ -212,7 +212,7 @@ const Assign = ({ navigation, route }) => {
                 <Text>Number of Unassigned Items: {Object.keys(route.params.itemList).length}</Text>
                 <View style={{flexDirection: "row"}}>
                     <Text>Total Price:</Text>
-                    <TextInput style={styles.input} onChangeText={setTotalPrice} placeholder={"including tax and tip"}/>
+                    <TextInput style={styles.input} onChangeText={setTotalPrice} placeholder={"including tax and tip"} placeholderTextColor={"gray"}/>
                 </View>
                 <Button title={"Calculate"} onPress={() => navigation.navigate('Calculate', { peopleList: people, factor: parseFloat(totalPrice)/route.params.totalPrice })}/>
             </View>

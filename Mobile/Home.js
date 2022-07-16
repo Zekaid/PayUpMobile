@@ -1,5 +1,5 @@
 import  React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, ScrollView, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, ScrollView, SafeAreaView, StatusBar } from 'react-native';
 import Modal from "react-native-modal";
 import Item from "./Item";
 
@@ -71,6 +71,11 @@ const Home = ({ navigation }) => {
 
     return (
         <SafeAreaView>
+            <StatusBar
+                animated={true}
+                backgroundColor="black"
+                barStyle={"dark-content"}
+            />
             <View style={{justifyContent: "space-between", flexDirection: "row"}}>
                 <Text style={styles.title}>
                     <Text>Pay</Text>
@@ -86,8 +91,8 @@ const Home = ({ navigation }) => {
             </View>
 
             <View style={styles.container}>
-                <TextInput clearTextOnFocus={true} style={styles.input} keyboardType={"default"} onChangeText={setName} placeholder={"item name"}/>
-                <TextInput clearTextOnFocus={true} style={styles.input} keyboardType={"numeric"} onChangeText={setPrice} placeholder={"item price"}/>
+                <TextInput clearTextOnFocus={true} style={styles.input} keyboardType={"default"} onChangeText={setName} placeholder={"item name"} placeholderTextColor={"gray"}/>
+                <TextInput clearTextOnFocus={true} style={styles.input} keyboardType={"numeric"} onChangeText={setPrice} placeholder={"item price"} placeholderTextColor={"gray"}/>
                 <Button style={styles.button} title={"Add"} onPress={addItem}/>
                 <Button style={styles.button} title={"Split"} onPress={()=>setModal(true)}/>
                 <Modal isVisible={modal}>
