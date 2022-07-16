@@ -122,8 +122,8 @@ const Assign = ({ navigation, route }) => {
             Object.keys(people[curr][1]).map((ct) => {
                 return (
                     <View style={styles.containerList}>
-                        <Text>{people[curr][1][parseInt(ct)][0]}</Text>
-                        <Text>{people[curr][1][parseInt(ct)][1]}</Text>
+                        <Text style={{marginTop:10}}>{people[curr][1][parseInt(ct)][0]}</Text>
+                        <Text style={{marginTop:10}}>{people[curr][1][parseInt(ct)][1]}</Text>
                         <Button title={"Remove"} onPress={()=>removeFromCollected(parseInt(ct))}/>
                     </View>
 
@@ -213,7 +213,7 @@ const Assign = ({ navigation, route }) => {
                     <Text>Total Price:</Text>
                     <TextInput style={styles.input} onChangeText={setTotalPrice} placeholder={"including tax and tip"}/>
                 </View>
-                <Button title={"Calculate"} />
+                <Button title={"Calculate"} onPress={() => navigation.navigate('Calculate', { peopleList: people, factor: parseFloat(totalPrice)/route.params.totalPrice })}/>
             </View>
 
         </SafeAreaView>
