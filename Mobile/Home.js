@@ -61,6 +61,13 @@ const Home = ({ navigation }) => {
         }
     }
 
+    const calculateTotal = () => {
+        let temp = 0;
+        Object.keys(items).map((ct)=>{
+            temp+=items[parseInt(ct)][1];
+        });
+        return temp;
+    }
 
     return (
         <SafeAreaView>
@@ -70,7 +77,9 @@ const Home = ({ navigation }) => {
                     <Text>Up</Text>
                 </Text>
                 <View style={{margin: 10}}>
-                    <Button title={"Assign"} onPress={() => navigation.navigate('Assign', { itemList: items, itemCount: count })
+                    <Button title={"Assign"} onPress={() => {
+                        navigation.navigate('Assign', { itemList: items, itemCount: count, totalPrice: calculateTotal() })
+                        }
                             }/>
                 </View>
 
