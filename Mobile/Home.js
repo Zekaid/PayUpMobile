@@ -7,18 +7,17 @@ const styles = StyleSheet.create({
     input: {
         borderStyle: "solid",
         borderWidth: 1,
-        marginRight: 10,
-        marginLeft: 10,
         width:"25%",
-        paddingLeft: 5,
-    },
-
-    button: {
-        width: 50,
+        borderRadius: 10
     },
 
     container: {
         flexDirection: "row",
+        justifyContent: "space-evenly"
+    },
+
+    button: {
+        borderStyle: "solid",
     },
 
     title: {
@@ -78,8 +77,8 @@ const Home = ({ navigation }) => {
             />
             <View style={{justifyContent: "space-between", flexDirection: "row"}}>
                 <Text style={styles.title}>
-                    <Text>Pay</Text>
-                    <Text>Up</Text>
+                    <Text style={{fontFamily: "Futura", fontWeight: "bold"}}>Pay</Text>
+                    <Text style={{fontFamily: "Futura", fontWeight: "bold", color:"blue"}}>Up</Text>
                 </Text>
                 <View style={{margin: 10}}>
                     <Button title={"Assign"} onPress={() => {
@@ -129,67 +128,4 @@ const Home = ({ navigation }) => {
     );
 }
 
-// const App = () => {
-//     const [people, setPeople] = useState({});
-//     const [actualTotal, setActualTotal] = useState(0);
-//     const [total, setTotal] = useState(0);
-//     const [count, setCount] = useState(0);
-//
-//     const factor = useRef(1);
-//     const inputMap = useRef({});
-//
-//     let c = 1;
-//
-//     const changeMap = (id,key,val,bool) => {
-//         if (bool){
-//             delete inputMap.current[id][key];
-//         }
-//         else {
-//             inputMap.current[id][key] = val;
-//         }
-//     }
-//
-//     const calculate = () => {
-//         if (actualTotal < total) {
-//             alert("The total with tip and tax has to be larger than subtotal!");
-//             return;
-//         }
-//         let temp = 0;
-//         for (const k in people){
-//             temp+=parseFloat(people[k]);
-//         }
-//         setTotal(total);
-//         factor.current = actualTotal/temp;
-//         update();
-//     }
-//
-//     const update = () => {
-//         var copy = JSON.parse(JSON.stringify(people));
-//         setPeople(copy);
-//     }
-//
-//     const add = () => {
-//         let copy = Object.assign({},people);
-//         copy[count] = JSON.stringify(0);
-//         setPeople(copy);
-//         inputMap.current[count] = ({count: 0});
-//         setCount(count+1);
-//     }
-//
-//     const del = (key) => {
-//         let copy = Object.assign({},people)
-//         delete copy[key];
-//         setPeople(copy);
-//         delete inputMap.current[key];
-//     }
-//
-//     const totalWithTipTax = (event) => {
-//         setActualTotal(event);
-//     }
-//
-//     const calcTotal = (key,subtotal) => {
-//         let copy = JSON.parse(JSON.stringify(people));
-//         copy[key] = subtotal;
-//         setPeople(copy);
-//     }
 export default Home;
